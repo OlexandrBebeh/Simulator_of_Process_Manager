@@ -2,20 +2,21 @@
 This is simulation of process manager on c++ with using corutines.
 
 The efficiency of the computer system does not depend only on the own efficiency of information processing algorithms and technical characteristics of the computer system, but also on the rules adopted in the system of work, reception and processing of user records.
+
 The efficiency of maintenance methods determines the possible value of delays or loss of applications for packaging, as well as when the applications are in the system. Depending on the type of management and scheduling system, the request delay can be added to the total average delay time or the allowable waiting time.
 
 
 ## FIRST  IN- FIRST OUT (FIFO)
 
 The Firstin queue algorithm, Firstout (FIFO), also called First Come First Served, is the simplest.
+
 FIFO is the simplest process planning strategy and is that the resource is transferred to the process that first turned to it. When a process enters the queue of finished processes, the process control block joins the tail of the queue. The average waiting time for a FIFO strategy is often quite large and depends on the order in which the processes enter the queue of finished processes.
 
 ### Functions
 
 This process manager written with help of corutines. So for better understanding you need to read about them more.
 
-** THIS CODE NOT RUN WITH VISUAL STUDIO BUCAUSE OF USING std::experimental. 
-TO START THIS YOU NEED USE Visual Studio 2019 Developer Command Prompt v16.7.6. **
+** THIS CODE NOT RUN WITH VISUAL STUDIO BUCAUSE OF USING std::experimental. TO START THIS YOU NEED USE Visual Studio 2019 Developer Command Prompt v16.7.6. **
 
 `void show_queue_by_one(process_manager &pr)` - shows queue of processes and execute them;
 
