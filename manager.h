@@ -11,7 +11,7 @@ using namespace std::experimental;
 using coro_t = resumable::coro_handle;
 
 
-class proccess_manager {
+class process_manager {
 
 	struct awaiter;
 
@@ -20,11 +20,11 @@ class proccess_manager {
 
 
 	struct awaiter {
-		proccess_manager& proccess_manager_;
+		process_manager& proccess_manager_;
 
 		coro_t coro_ = nullptr;
 
-		awaiter(proccess_manager& proccess_manager) noexcept:proccess_manager_(proccess_manager) {}
+		awaiter(process_manager& proccess_manager) noexcept:proccess_manager_(proccess_manager) {}
 
 		bool await_ready() const noexcept {
 			return proccess_manager_.is_empty();
@@ -40,15 +40,16 @@ class proccess_manager {
 	};
 
 public:
-	proccess_manager(bool empty = false) : empty_(empty){}
-	proccess_manager(const proccess_manager&) = delete;
-	proccess_manager& operator = (const proccess_manager&) = delete;
-	proccess_manager(proccess_manager&&) = delete;
-	proccess_manager& operator = (proccess_manager&&) = delete;
+	process_manager(bool empty = false) : empty_(empty){}
+	process_manager(const process_manager&) = delete;
+	process_manager& operator = (const process_manager&) = delete;
+	process_manager(process_manager&&) = delete;
+	process_manager& operator = (process_manager&&) = delete;
 
 	bool is_empty() const noexcept { return empty_; }
 
 	void push_awaiter(awaiter awaiter_) {
+		cout << "Process " << awaiter_.coro_.promise().proccess_number << " added to queue\n";
 		empty_ = false;
 		list_.push_back(awaiter_);
 	}
@@ -77,7 +78,7 @@ public:
 	}
 
 
-	void show_queue(proccess_manager &pr) {
+	void show_queue(process_manager &pr) {
 		if (!empty_) {
 
 			cout << "==================Queue==================\n";
@@ -93,7 +94,7 @@ public:
 	}
 
 
-	void show_queue_by_one(proccess_manager &pr) {
+	void show_queue_by_one(process_manager &pr) {
 
 		if (!empty_) {
 
